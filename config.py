@@ -5,7 +5,7 @@ load_dotenv()
 
 DATABASE_URL = os.getenv(
     "DATABASE_URL",
-    "postgresql://postgres.phqdqoeaxgwcsgnsgmnj:Up20aq%404666@db.phqdqoeaxgwcsgnsgmnj.supabase.co:5432/postgres",
+    "postgresql://postgres:FdcPrEyLAMyacKvo@db.phqdqoeaxgwcsgnsgmnj.supabase.co:5432/postgres",
     
 )
 SECRET_KEY = os.getenv("SECRET_KEY", "pmc-erp-dev-secret-change-in-production")
