@@ -3,12 +3,10 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-DATABASE_URL = os.getenv(
-    "DATABASE_URL",
-    "postgresql://postgres:FdcPrEyLAMyacKvo@db.phqdqoeaxgwcsgnsgmnj.supabase.co:5432/postgres",
-    
-)
-SECRET_KEY = os.getenv("SECRET_KEY", "pmc-erp-dev-secret-change-in-production")
+DATABASE_URL = os.getenv("DATABASE_URL")
+
+if not DATABASE_URL:
+    raise RuntimeError("DATABASE_URL is not configured")
 
 PAGE_KEYS = [
     "dashboard",
