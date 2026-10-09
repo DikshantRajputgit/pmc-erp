@@ -2,7 +2,7 @@ import streamlit as st
 
 # Direct Streamlit secrets se DATABASE_URL utha raha hai
 try:
-    DATABASE_URL = st.secrets["postgresql://postgres:FdcPrEyLAMyacKvo@db.phqdqoeaxgwcsgnsgmnj.supabase.co:5432/postgres"]
+    DATABASE_URL = st.secrets["postgresql://postgres.phqdqoeaxgwcsgnsgmnj:RrD8C2Q2y7SPierJ@aws-1-ap-northeast-1.pooler.supabase.com:6543/postgres"]
 except Exception:
     DATABASE_URL = None
 
