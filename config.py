@@ -1,12 +1,13 @@
-import os
-from dotenv import load_dotenv
+import streamlit as st
 
-load_dotenv()
-
-DATABASE_URL = os.getenv("DATABASE_URL")
+# Direct Streamlit secrets se DATABASE_URL utha raha hai
+try:
+    DATABASE_URL = st.secrets["postgresql://postgres:FdcPrEyLAMyacKvo@db.phqdqoeaxgwcsgnsgmnj.supabase.co:5432/postgres"]
+except Exception:
+    DATABASE_URL = None
 
 if not DATABASE_URL:
-    raise RuntimeError("DATABASE_URL is not configured")
+    raise RuntimeError("DATABASE_URL is not configured in Streamlit Secrets")
 
 PAGE_KEYS = [
     "dashboard",
@@ -75,3 +76,6 @@ COMPANY_EXPENSE_TYPES = [
     "Other Operational",
 ]
 PAYMENT_MODES = ["Cash", "Cheque", "NEFT", "RTGS", "UPI", "Other"]
+```[cite: 2]
+
+Isko apni repo me update karke save kar de, aur Streamlit cloud par app ko **Reboot** kar dena. Phir error solve ho jayegi!
