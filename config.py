@@ -1,5 +1,13 @@
 import streamlit as st
-st.write("DEBUG URL:", st.secrets.get("DATABASE_URL"))
+
+# Pehle variable me assign kar
+DATABASE_URL = st.secrets.get("DATABASE_URL")
+
+# Phir debug print karwa
+st.write("DEBUG URL:", DATABASE_URL)
+
+if not DATABASE_URL:
+    raise RuntimeError("DATABASE_URL is not configured in Streamlit Secrets")
 
 PAGE_KEYS = [
     "dashboard",
