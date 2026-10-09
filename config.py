@@ -1,10 +1,10 @@
 import streamlit as st
 
-# Pehle variable me assign kar
-DATABASE_URL = st.secrets.get("DATABASE_URL")
-
-# Phir debug print karwa
-st.write("DEBUG URL:", DATABASE_URL)
+# Streamlit secrets se DATABASE_URL uthana
+try:
+    DATABASE_URL = st.secrets["DATABASE_URL"]
+except Exception:
+    DATABASE_URL = None
 
 if not DATABASE_URL:
     raise RuntimeError("DATABASE_URL is not configured in Streamlit Secrets")
@@ -51,31 +51,15 @@ PAGE_LABELS = {
 
 COMMISSION_TYPES = ["SUPPLY", "MRP_PERCENT", "PAYMENT", "TRADE", "FIXED"]
 
-# How "Commission Value" is interpreted for each type (shown in Doctor Master UI)
 COMMISSION_VALUE_HELP: dict[str, str] = {
-    "SUPPLY": "**Percentage** of supply value in the visit period: (Supply Qty × Rate) × (Value ÷ 100). Example: Value `10` = 10% of supply amount.",
-    "MRP_PERCENT": "**Percentage** of MRP on sold qty: Sold Qty × MRP × (Value ÷ 100). Example: Value `20` = 20%.",
-    "PAYMENT": "**Percentage** of collections from that medical in the visit window: Collection × (Value ÷ 100). Example: Value `5` = 5%.",
-    "TRADE": "**Percentage** of sold value at rate: Rate × Sold Qty × (Value ÷ 100). Example: Rate 100, Sold Qty 10, Value 20 → 100 × 10 × 20% = 200.",
-    "FIXED": "**Rupees (Rs), not %** — fixed amount added **per product line** on each visit in Doctor PNL (not once per month unless you use one visit per month). Example: Value `40` = Rs 40 per line.",
+    "SUPPLY": "**Percentage** of supply value in the visit period.",
+    "MRP_PERCENT": "**Percentage** of MRP on sold qty.",
+    "PAYMENT": "**Percentage** of collections from that medical.",
+    "TRADE": "**Percentage** of sold value at rate.",
+    "FIXED": "**Fixed amount** added per product line.",
 }
-DOCTOR_EXPENSE_TYPES = ["Gift", "Dinner", "Samples", "Tour", "Petrol", "Other"]
-SALES_EXPENSE_TYPES = [
-    "Fuel",
-    "Food",
-    "Hotel",
-    "Travel",
-    "Bike Service",
-    "Mobile Recharge",
-    "Other",
-]
-COMPANY_EXPENSE_TYPES = [
-    "Salary",
-    "Samples",
-    "Tour",
-    "Other Operational",
-]
-PAYMENT_MODES = ["Cash", "Cheque", "NEFT", "RTGS", "UPI", "Other"]
-```[cite: 2]
 
-Isko apni repo me update karke save kar de, aur Streamlit cloud par app ko **Reboot** kar dena. Phir error solve ho jayegi!
+DOCTOR_EXPENSE_TYPES = ["Gift", "Dinner", "Samples", "Tour", "Petrol", "Other"]
+SALES_EXPENSE_TYPES = ["Fuel", "Food", "Hotel", "Travel", "Bike Service", "Mobile Recharge", "Other"]
+COMPANY_EXPENSE_TYPES = ["Salary", "Samples", "Tour", "Other Operational"]
+PAYMENT_MODES = ["Cash", "Cheque", "NEFT", "RTGS", "UPI", "Other"]
