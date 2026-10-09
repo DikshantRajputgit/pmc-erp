@@ -1,13 +1,5 @@
 import streamlit as st
-
-# Direct Streamlit secrets se DATABASE_URL utha raha hai
-try:
-    DATABASE_URL = st.secrets["postgresql://postgres.phqdqoeaxgwcsgnsgmnj:RrD8C2Q2y7SPierJ@aws-1-ap-northeast-1.pooler.supabase.com:6543/postgres"]
-except Exception:
-    DATABASE_URL = None
-
-if not DATABASE_URL:
-    raise RuntimeError("DATABASE_URL is not configured in Streamlit Secrets")
+st.write("DEBUG URL:", st.secrets.get("DATABASE_URL"))
 
 PAGE_KEYS = [
     "dashboard",
